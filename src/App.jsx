@@ -101,7 +101,7 @@ function Nav({ user, now }) {
   return (
     <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"13px 20px",borderBottom:"1px solid var(--brd)",background:"rgba(10,15,30,.92)",backdropFilter:"blur(12px)",position:"sticky",top:0,zIndex:100}}>
       <div style={{display:"flex",alignItems:"center",gap:10}}>
-        <div style={{width:34,height:34,borderRadius:9,background:"linear-gradient(135deg,var(--acc),var(--acc2))",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16}}>📋</div>
+        <div style={{width:34,height:34,borderRadius:9,background:"linear-gradient(135deg,var(--acc),var(--acc2))",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20}}>📋</div>
         <div>
           <div style={{fontWeight:700,fontSize:15}}>AttendTrack{user.role==="admin"&&<span style={{fontSize:10,background:"rgba(99,102,241,.2)",color:"#818cf8",padding:"2px 6px",borderRadius:4,marginLeft:7,fontWeight:700}}>ADMIN</span>}</div>
           <div style={{fontFamily:"var(--mono)",fontSize:10,color:"var(--txt3)"}}>{fmtTime(now)}</div>
