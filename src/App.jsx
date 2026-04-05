@@ -159,7 +159,7 @@ function Camera({onCapture,onCancel}){
   useEffect(()=>{
     let active=true;
     navigator.mediaDevices.getUserMedia({video:{facingMode:"user"}})
-      .then(s=>{if(!active){s.getTracks().forEach(t=>t.stop());return;}streamRef.current=s;if(vidRef.current)vidRef.current.srcObject=s;setTimeout(()=>{if(active)startCountdown();},500);})
+     .then(s=>{if(!active){s.getTracks().forEach(t=>t.stop());return;}streamRef.current=s;if(vidRef.current){vidRef.current.srcObject=s;}setTimeout(()=>{if(active){startCountdown();}},500);}).catch(()=>setErr(true));
       .catch(()=>setErr(true));
     return()=>{active=false;streamRef.current?.getTracks().forEach(t=>t.stop());};
       .catch(()=>setErr(true));
