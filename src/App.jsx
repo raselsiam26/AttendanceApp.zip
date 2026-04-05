@@ -164,9 +164,15 @@ function Camera({onCapture,onCancel}){
     return()=>{active=false;streamRef.current?.getTracks().forEach(t=>t.stop());};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
+  const snap=()=>{
+    const v=vidRef.current,c=canRef.current;if(!v||!c)return;
+    c.width=v.videoWidth;c.height=v.videoHeight;
+    const ctx=c.getContext("2d");ctx.drawImage(v,0,0);
+    setCaptured(c.toDataURL("image/jpeg",0.4));streamRef.current?.getTracks().forEach(t=>t.stop());
+  };
   const startCountdown=()=>{
-    setCountdown(3);
-    let count=3;
+    setCountdown(5);
+    let count=5;
     const t=setInterval(()=>{
       count--;
       if(count===0){clearInterval(t);setCountdown(null);snap();}
