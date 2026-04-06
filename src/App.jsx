@@ -221,7 +221,7 @@ function EmpDash({user}){
     }catch{toast.e("Data load হয়নি");}
   },[user.uid]);
 
-  useEffect(()=>{load();loadLeave();},[load]);
+  useEffect(()=>{load();loadLeave();},[load,loadLeave]);
 
   const loadLeave=useCallback(async()=>{
     try{
