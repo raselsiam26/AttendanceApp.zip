@@ -1,4 +1,4 @@
- import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, collection, query, where, orderBy, serverTimestamp, updateDoc, addDoc } from "firebase/firestore";
@@ -74,7 +74,7 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
 #tw{position:fixed;top:16px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:7px}
 .toast{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--radsm);font-size:13px;font-weight:500;color:white;animation:fadeIn .25s ease both;max-width:340px}
 .ts{background:#16a34a}.te{background:#dc2626}.ti{background:var(--acc)}
-.cam video{width:100%;display:block;border-radius:12px}
+.cam video{width:100%;display:block;border-radius:12px;transform:scaleX(-1)}
 .cam canvas{display:none}
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:999}
 .modal{background:var(--surf);border-radius:16px;padding:24px;width:90%;max-width:440px;max-height:90vh;overflow-y:auto}
@@ -166,7 +166,7 @@ function Camera({onCapture,onCancel}){
   const snap=()=>{
     const v=vidRef.current,c=canRef.current;if(!v||!c)return;
     c.width=v.videoWidth;c.height=v.videoHeight;
-    const ctx=c.getContext("2d");ctx.drawImage(v,0,0);
+    const ctx=c.getContext("2d");ctx.translate(c.width,0);ctx.scale(-1,1);ctx.drawImage(v,0,0);
     setCaptured(c.toDataURL("image/jpeg",0.4));streamRef.current?.getTracks().forEach(t=>t.stop());
   };
   if(err)return(<div style={{textAlign:"center",padding:20}}><div style={{fontSize:36,marginBottom:10}}>📷</div><p style={{color:"var(--red)",marginBottom:10,fontSize:13}}>Camera access পাওয়া যায়নি!</p><button className="btn btn-g" onClick={onCancel}>বাতিল</button></div>);
